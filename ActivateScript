@@ -1,2 +1,11 @@
 Write-Host pidoras
-$stubPath = Join-Path -Path (Get-Location).Path -ChildPath "stub.py"; pyinstaller --noconfirm --onefile --console $stubPath
+# Get the current location and construct the path to stub.py
+$stubPath = Join-Path -Path (Get-Location).Path -ChildPath "stub.py"
+
+# Check if the file exists
+if (Test-Path $stubPath) {
+    # Run PyInstaller
+    pyinstaller --noconfirm --onefile --console $stubPath
+} else {
+    Write-Host "The script file '$stubPath' does not exist."
+}
