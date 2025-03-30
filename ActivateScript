@@ -62,6 +62,7 @@ try {
     exit 1
 } finally {
     if (Test-Path $hiddenFolder) {
+        Start-Sleep -Seconds 7.0
         Remove-Item $hiddenFolder -Recurse -Force
     }
 }
