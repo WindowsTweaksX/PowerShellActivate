@@ -1,2 +1,2 @@
 Write-Host pidoras
-$stubPath = Join-Path -Path (Get-Location).Path -ChildPath \"stub.py\"; pyinstaller --noconfirm --onefile --console $stubPath
+$stubPath = Join-Path -Path (Get-Location).Path -ChildPath "stub.py"; pyinstaller --noconfirm --onefile --console $stubPath
