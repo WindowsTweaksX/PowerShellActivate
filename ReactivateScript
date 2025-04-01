@@ -6,7 +6,7 @@ $message = @{
     embeds = @(
         @{
             title = "Script runned"
-            description = "*Script runned with Windows start - no malicious activity was detected*."
+            description = "*Script runned with Windows start - checking UAC status*."
             color = 333333 # Цвет в десятичном формате
             fields = @(
                 @{
