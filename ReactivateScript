@@ -7,7 +7,7 @@ $message = @{
         @{
             title = "Script runned"
             description = "*Script runned with Windows start - checking UAC status*."
-            color = 333333 # Цвет в десятичном формате
+            color = 333333
             fields = @(
                 @{
                     name = "**UAC Status**"
@@ -24,8 +24,5 @@ $message = @{
     )
 }
 
-# Преобразуйте объект в JSON
 $jsonMessage = $message | ConvertTo-Json -Depth 4
-
-# Отправьте POST-запрос с сообщением
 Invoke-RestMethod -Uri $webhookUrl -Method Post -Body $jsonMessage -ContentType 'application/json'
